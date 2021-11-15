@@ -35,7 +35,8 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/paired_devices"
+                    android:id="@+id/btn_paired"
+                    android:onClick="onClickButtonPaired"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5sp"
@@ -44,32 +45,34 @@
                     android:text="Paired Devices" />
 
                 <Button
-                    android:id="@+id/device_search"
+                    android:id="@+id/btn_search"
+                    android:onClick="onClickButtonSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5sp"
                     android:layout_weight="1"
-                    android:text="Search" />
+                    android:text="Search"/>
 
                 <Button
-                    android:id="@+id/scan"
+                    android:id="@+id/btn_send"
+                    android:onClick="onClickButtonSend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5sp"
                     android:layout_weight="1"
-                    android:text="Sacn a" />
+                    android:text="Send a" />
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/bluetooth_device_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="wrap_content"
+                android:layout_height="200sp">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </ListView>
 
             <TextView
-                android:id="@+id/bluetooth_dvice"
+                android:id="@+id/text_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
@@ -165,7 +168,7 @@
                     android:textSize="18dp" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ListView
                 android:id="@+id/color_select_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
