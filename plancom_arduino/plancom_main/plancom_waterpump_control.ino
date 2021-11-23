@@ -8,7 +8,7 @@ void motor_Move(int waterMax){
     }
   }
   else  if(waterMax == 0){                                          //블루투스로 0 데이터가 들어오면 자동 물주기 ON
-    if ( water > 800){
+   if ( water > 800){
       digitalWrite(MOTOR, HIGH);
     }else{
       digitalWrite(MOTOR, LOW);

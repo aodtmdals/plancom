@@ -1,14 +1,6 @@
 //AT로 확인하삼
 
 void bluetoothSignal() {
-  /*
-    if (bluetooth.available()) {
-    Serial.write(bluetooth.read());  //블루투스측 내용을 시리얼모니터에 출력
-    }
-    if (Serial.available()) {
-    bluetooth.write(Serial.read());  //시리얼 모니터 내용을 블루추스 측에 WRITE
-    }
-  */
 
 
                                                                                                             /*bluetooth data save*/
@@ -66,20 +58,5 @@ void bluetoothSignal() {
 
                                                                                                                 /*data reset*/
     data = "";                                                                                                  //data 변수값 초기화
-  }
-  time_bluetooth_current = millis();
-}
-
-
-
-void paintBluetoothSensorValue() {
-                                                                                                                //현실 시간 2초마다 센서값을 보냄
-  if (time_bluetooth_current - time_bluetooth_previous >= 2000) {
-    printBluetoothLED();
-    printBluetoothDHT();
-    paintBluetoothEC();
-    paintBluetoothDust();
-    
-    time_bluetooth_previous = time_bluetooth_current;
   }
 }
