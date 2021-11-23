@@ -1,6 +1,6 @@
 /*bluetooth PIN setting*/
-#define BT_RXD 7
-#define BT_TXD 6
+#define BT_RXD 6
+#define BT_TXD 7
 
 
 /*먼지, EC, 토양수분, 모터릴레이 PIN setting*/
@@ -11,7 +11,7 @@ int waterMax = 0;                             //자동 물주기 변수
 
 
 /*DHT pin setting*/
-#define DHTPIN 12                              // DHT pin setting
+#define DHTPIN 8                              // DHT pin setting
 #define DHTTYPE DHT11                          // DHT11 온습도 센서 사용
 
 /*LED pin setting*/
@@ -39,10 +39,12 @@ String data = "";       //블루투스 데이터
 /*먼지 센서 setting*/
 
 
-unsigned long time_previous, time_current, time_bluetooth_previous, time_bluetooth_current;
+unsigned long time_previous, time_bluetooth_previous;
 
 /*Co2센서 변수들*/
 unsigned char Send_data[4] = {0x11,0x01,0x01,0xED};
 unsigned char Receive_Buff[8];
 unsigned char recv_cnt = 0;
 unsigned int PPM_Value;
+
+uint8_t value_buffer[32];
