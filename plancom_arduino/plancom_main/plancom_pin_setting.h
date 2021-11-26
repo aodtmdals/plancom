@@ -7,7 +7,6 @@
 #define EC_PIN A1                             //EC pin setting
 #define Soil_PIN A3                           //soli pin setting
 #define MOTOR 11                              //motor pin setting
-int waterMax = 0;                             //자동 물주기 변수
 
 
 /*DHT pin setting*/
@@ -31,20 +30,9 @@ float voltage = 0, ecValue = 0, temperature = 0;
 int water = 0 ; // water 변수 선언
 int EC = 0 ; // EC 변수 선언
 
-
 /*bluetooth 데이터값*/
 String data = "";       //블루투스 데이터
 
 
-/*먼지 센서 setting*/
-
 
 unsigned long time_previous, time_bluetooth_previous;
-
-/*Co2센서 변수들*/
-unsigned char Send_data[4] = {0x11,0x01,0x01,0xED};
-unsigned char Receive_Buff[8];
-unsigned char recv_cnt = 0;
-unsigned int PPM_Value;
-
-uint8_t value_buffer[32];
