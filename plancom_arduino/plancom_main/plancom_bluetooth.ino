@@ -1,5 +1,6 @@
 //AT로 확인하삼
 
+
 void bluetoothSignal() {
 
 
@@ -10,8 +11,6 @@ void bluetoothSignal() {
     data += BT_buffer;
     delay(50);
   }
-                                                                                                            /*받아온 센서를 블루투스로 통신해 보내줌*/
-  //paintBluetoothSensorValue();
 
 
   if (not(data == ""))                                                                                     //data 값이 있다면
@@ -48,13 +47,7 @@ void bluetoothSignal() {
         LED_Control(7);
       }
     }
-                                                                                                              //펌프 조절에 대한 데이터 값이 들어오면 waterMax 변수에 저장해 펌프를 ON/OFF함
-    if(data.toInt() >= 0 && data.toInt() <= 999){
-     waterMax = data.toInt();
-     motor_Move(waterMax);
-    }
-
-
+                 
 
                                                                                                                 /*data reset*/
     data = "";                                                                                                  //data 변수값 초기화

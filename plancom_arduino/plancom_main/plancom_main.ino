@@ -9,8 +9,6 @@ void setup() {
   //블루투스 쓰고 싶을 땐 mySerial 주석처리 요망
   bluetooth.begin(9600); 
 
-        
-  
   dht.begin();
 
   pm2008_i2c.begin();
@@ -22,8 +20,6 @@ void setup() {
   pinMode(MOTOR, OUTPUT); //motor setting
 
   cm1106_i2c.begin();
-  cm1106_i2c.read_serial_number();
-  cm1106_i2c.check_sw_version();
   
                                                                                 /*센서값 통신 세팅*/
   time_previous = millis();
@@ -56,6 +52,11 @@ void loop() {
   ECSetting();                                                                    /*EC sensor 세팅*/
 
   
+   if ( water > 800){
+      digitalWrite(MOTOR, HIGH);
+    }else{
+      digitalWrite(MOTOR, LOW);
+    }
 
 
                                                                                   /*현실시간 1초가 지나면 세븐세그먼트 모니터에 토양습도 값 표기*/
@@ -111,9 +112,6 @@ void loop() {
           
           Serial.print("WaterMax : ");
           Serial.println(waterMax);
-    
-         Serial.write("   PPM : ");
-         Serial.println(PPM_Value);
          
         if (ret_dust == 0) {
           Serial.print("PM 1.0 (GRIMM) : ");
@@ -203,6 +201,44 @@ void loop() {
       
       Serial.println();
   }
+                                                                                  /*현실시간 1초가 지나면 세븐세그먼트 모니터에 토양습도 값 표기*/
+  if(time_bluetooth_previous + 2000 < millis()){
+      
+      //시리얼 모니터 출력
+      bluetooth.print(ecValue, 2);                   //ec센서
+      bluetooth.print(",");
 
+          
+      
+      bluetooth.print(hic);                       //섭씨온도
+      bluetooth.print(",");
+      bluetooth.print(h);                         //습도
+      bluetooth.print(",");
+      
+    
+    
+/*      if (ecValue >= 1.2) {                                         //EC센서 값 1.2 이상 : 양호
+        Serial.println("영양상태 양호");
+      } else if (ecValue >= 0.7 && ecValue < 1.2) {                 //EC센서 값 1.2 미만 ~ 0.7 이상 : 주의
+        Serial.println("영양상태 주의");
+      } else if (ecValue < 0.7) {                                   //EC센서 값 0.7 미만 : 위험
+        Serial.println("영양상태 위험");
+      }
+*/      
+         
+        if (ret_dust == 0) {                                          //미세먼지
+          bluetooth.print(pm2008_i2c.pm1p0_grimm);
+          bluetooth.print(",");
+        }
+    
+        if (ret_co2 == 0) {                                           //Co2
+        bluetooth.print(cm1106_i2c.co2);
+        bluetooth.print(",");
+          
+        bluetooth.print(water);
+        bluetooth.print(",");
+      }
+      delay(1000);
+  }
 
 }
